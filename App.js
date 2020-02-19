@@ -1,13 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import MainNavigation from './src/navigations/MainNavigation';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <View style={styles.row}>
-        <TextInput style={styles.input} />
-        <Button title="Add" />
-      </View>
+      <MainNavigation />
     </View>
   );
 }
