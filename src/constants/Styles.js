@@ -1,5 +1,17 @@
 import { StyleSheet } from "react-native";
 import COLORS from "./Colors";
+import { toPercent } from "../utils/common";
+
+const colStyle = (fullWidth) => {
+    const colObj = {}
+    for(let i = 1; i<=fullWidth; i++) {
+        const width = toPercent(i/fullWidth)
+        colObj[`col_${i}`] = {
+            width: width
+        }
+    }
+    return colObj
+}
 
 export const paddingStyle = (...param) => {
     let paddingObj = {}
@@ -43,12 +55,21 @@ export const SHARED_STYLE = StyleSheet.create({
         flex: 1,
         backgroundColor: COLORS.blue900
     },
+    row: {
+        flex: 1,
+        flexDirection: 'row',
+    },
+    col: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     text: {
         color: COLORS.white,
         fontSize: 14
     },
     button: {
-        width: 120,
+        width: '100%',
         height: 40,
         borderRadius: 8,
         backgroundColor: COLORS.turquoise400,

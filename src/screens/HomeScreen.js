@@ -7,11 +7,11 @@ import COLORS from '../constants/Colors'
 import { SHARED_STYLE, paddingStyle, borderStyle } from '../constants/Styles'
 import { toPercent } from '../utils/common'
 
-export default function HomeScreen({ navigation }) {
+export default function HomeScreen() {
     return (
-        <View style={SHARED_STYLE.container}>
+        <View style={[SHARED_STYLE.container, styles.container]}>
             <WalletInfo />
-            <View style={styles.navContainer}>
+            <View style={[SHARED_STYLE.row, styles.navRow]}>
                 <TxListButton />
                 <MarketButton />
             </View>
@@ -22,7 +22,7 @@ export default function HomeScreen({ navigation }) {
 
 const WalletInfo = () => {
     return (
-        <View style={[styles.container, styles.walletInfoContainer]}>
+        <View style={[styles.walletInfo]}>
             <Text style={SHARED_STYLE.text}>Wallet Info</Text>
         </View>
     )
@@ -31,7 +31,7 @@ const WalletInfo = () => {
 const TxListButton = () => {
     const navigation = useNavigation()
     return (
-        <View style={[styles.container, styles.navButtonContainer]}>
+        <View style={[SHARED_STYLE.col, styles.navCol]}>
             <View style={SHARED_STYLE.button}>
                 <TouchableOpacity onPress={() => navigation.navigate(ROUTES.TX_LIST)}>
                     <Text style={SHARED_STYLE.buttonText}>Tx List</Text>
@@ -43,7 +43,7 @@ const TxListButton = () => {
 
 const MarketButton = () => {
     return (
-        <View style={[styles.container, styles.navButtonContainer]}>
+        <View style={[SHARED_STYLE.col, styles.navCol]}>
             <View style={SHARED_STYLE.button}>
                 <TouchableOpacity>
                     <Text style={SHARED_STYLE.buttonText}>Market</Text>
@@ -55,7 +55,7 @@ const MarketButton = () => {
 
 const CoinList = () => {
     return (
-        <View style={[styles.container, styles.coinListContainer]}>
+        <View style={styles.coinList}>
             <FlatList
                 data={MOCK_COINS}
                 renderItem={({ item }) => (
@@ -83,7 +83,7 @@ const CoinCard = (props) => {
 
     return (
         <TouchableOpacity onPress={() => navigation.navigate(ROUTES.COIN_DETAIL, { name: name })}>
-            <View style={styles.coinCardContainer}>
+            <View style={styles.coinCard}>
                 <View style={styles.coinIcon}>
                     <Image style={styles.iconImage} source={icon} />
                 </View>
@@ -107,28 +107,25 @@ const CoinCard = (props) => {
 const styles = StyleSheet.create({
     container: {
         width: '100%',
-        ...paddingStyle(12)
+        ...paddingStyle(0, 12)
     },
-    walletInfoContainer: {
+    walletInfo: {
         flex: 3,
         alignItems: 'center',
         justifyContent: 'center'
     },
-    navContainer: {
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between'
+    navRow: {
+        marginLeft: -12,
+        marginRight: -12,
     },
-    navButtonContainer: {
-        flex: 1,
-        width: '50%'
+    navCol: {
+        ...paddingStyle(0, 12),
     },
-    coinListContainer: {
+    coinList: {
         flex: 4,
         marginBottom: -12
     },
-    coinCardContainer: {
+    coinCard: {
         height: 64,
         flexDirection: 'row',
         alignItems: 'center',
