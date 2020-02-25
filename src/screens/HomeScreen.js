@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { View, Text, TouchableOpacity, FlatList, Image, StyleSheet } from 'react-native'
 import ROUTES from '../constants/Routes'
 import { useNavigation } from '@react-navigation/native'
@@ -6,7 +6,6 @@ import { MOCK_COINS } from '../utils/mock'
 import COLORS from '../constants/Colors'
 import { SHARED_STYLE, paddingStyle, borderStyle } from '../constants/Styles'
 import { toPercent } from '../utils/common'
-import { Button } from 'react-native-paper'
 import OutlinedButton from '../components/OutlinedButton'
 
 export default function HomeScreen() {
@@ -139,21 +138,22 @@ const styles = StyleSheet.create({
     },
     coinInfo: {
         width: '50%',
-        ...paddingStyle(0, 12)
+        ...paddingStyle(0, 12),
     },
     coinNameText: {
-        fontSize: 21
+        fontSize: 21,
+        fontFamily: 'Gotham',
     },
     coinExchange: {
         flexDirection: 'row',
-        alignItems: 'center',
+        alignItems: 'flex-end',
     },
     currencyText: {
-        fontSize: 12,
         marginRight: 8
     },
     amountText: {
-        fontSize: 21
+        fontSize: 21,
+        transform: [{ translateY: 5 }]
     },
     coinRate: {
         width: '30%',

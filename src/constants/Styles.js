@@ -53,7 +53,10 @@ export const SHARED_STYLE = StyleSheet.create({
         justifyContent: 'center',
     },
     text: {
-        fontSize: 14
+        fontSize: 14,
+        fontFamily: 'Gotham-light',
+        transform: [{translateY : 2}]
+
     },
     button: {
         width: '100%',
@@ -61,6 +64,6 @@ export const SHARED_STYLE = StyleSheet.create({
     },
     buttonText: {
         fontSize: 15,
-        fontWeight: '500'
+        fontFamily: 'Gotham',
     }
 })
