@@ -1,23 +1,11 @@
 import { StyleSheet } from "react-native";
 import COLORS from "./Colors";
-import { toPercent } from "../utils/common";
-
-const colStyle = (fullWidth) => {
-    const colObj = {}
-    for(let i = 1; i<=fullWidth; i++) {
-        const width = toPercent(i/fullWidth)
-        colObj[`col_${i}`] = {
-            width: width
-        }
-    }
-    return colObj
-}
 
 export const paddingStyle = (...param) => {
     let paddingObj = {}
     switch (param.length) {
         case 1:
-            paddingObj =  { padding: param[0] }
+            paddingObj = { padding: param[0] }
             break
         case 2:
             paddingObj = {
@@ -53,7 +41,7 @@ export const borderStyle = (width, style, color) => {
 export const SHARED_STYLE = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: COLORS.blue900
+        backgroundColor: COLORS.gray
     },
     row: {
         flex: 1,
@@ -65,20 +53,14 @@ export const SHARED_STYLE = StyleSheet.create({
         justifyContent: 'center',
     },
     text: {
-        color: COLORS.white,
         fontSize: 14
     },
     button: {
         width: '100%',
-        height: 40,
-        borderRadius: 8,
-        backgroundColor: COLORS.turquoise400,
-        alignItems: 'center',
-        justifyContent: 'center',
-        ...paddingStyle(10, 24)
+        ...borderStyle(1, 'solid', COLORS.lightBlack)
     },
     buttonText: {
         fontSize: 15,
-        fontWeight: '700'
+        fontWeight: '500'
     }
 })

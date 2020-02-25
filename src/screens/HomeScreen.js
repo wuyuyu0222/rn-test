@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, TouchableOpacity, FlatList, Image, StyleSheet } from 'react-native'
 import ROUTES from '../constants/Routes'
 import { useNavigation } from '@react-navigation/native'
@@ -6,6 +6,8 @@ import { MOCK_COINS } from '../utils/mock'
 import COLORS from '../constants/Colors'
 import { SHARED_STYLE, paddingStyle, borderStyle } from '../constants/Styles'
 import { toPercent } from '../utils/common'
+import { Button } from 'react-native-paper'
+import OutlinedButton from '../components/OutlinedButton'
 
 export default function HomeScreen() {
     return (
@@ -32,11 +34,7 @@ const TxListButton = () => {
     const navigation = useNavigation()
     return (
         <View style={[SHARED_STYLE.col, styles.navCol]}>
-            <View style={SHARED_STYLE.button}>
-                <TouchableOpacity onPress={() => navigation.navigate(ROUTES.TX_LIST)}>
-                    <Text style={SHARED_STYLE.buttonText}>Tx List</Text>
-                </TouchableOpacity>
-            </View>
+            <OutlinedButton onPress={() => navigation.navigate(ROUTES.TX_LIST)}>Tx List</OutlinedButton>
         </View>
     )
 }
@@ -44,11 +42,7 @@ const TxListButton = () => {
 const MarketButton = () => {
     return (
         <View style={[SHARED_STYLE.col, styles.navCol]}>
-            <View style={SHARED_STYLE.button}>
-                <TouchableOpacity>
-                    <Text style={SHARED_STYLE.buttonText}>Market</Text>
-                </TouchableOpacity>
-            </View>
+            <OutlinedButton disabled={true}>Market</OutlinedButton>
         </View>
     )
 }
@@ -133,7 +127,7 @@ const styles = StyleSheet.create({
         marginBottom: 12,
         borderRadius: 8,
         ...paddingStyle(0, 12),
-        ...borderStyle(1, 'solid', COLORS.yellow400),
+        ...borderStyle(1, 'solid', COLORS.lightBlack),
     },
     coinIcon: {
         width: '20%'

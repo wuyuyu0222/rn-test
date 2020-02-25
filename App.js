@@ -1,32 +1,23 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { View } from 'react-native';
+import { Provider, DefaultTheme, Button } from 'react-native-paper';
 import MainNavigation from './src/navigations/MainNavigation';
+import { SHARED_STYLE } from './src/constants/Styles';
+import COLORS from './src/constants/Colors';
+
+const theme = Object.assign(DefaultTheme, {
+    colors: Object.assign(DefaultTheme.colors, {
+        primary: COLORS.black
+    })
+})
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <MainNavigation />
-    </View>
-  );
+    return (
+        <Provider theme={theme}>
+            <View style={SHARED_STYLE.container}>
+                <Button>test</Button>
+                <MainNavigation />
+            </View>
+        </Provider>
+    )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    paddingTop: 64,
-    paddingLeft: 32,
-    paddingRight: 32,
-    paddingBottom: 64
-  },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between'
-  },
-  input: {
-    width: '80%',
-    borderBottomColor: '#1E91D6',
-    borderBottomWidth: 1
-  },
-});
