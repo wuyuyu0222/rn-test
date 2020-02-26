@@ -1,23 +1,30 @@
 import { MOCK_COINS } from "./mock"
 
-export function toPercent(num) {
-    const percent = (+num * 100).toFixed(2)
+export function toPercent(num, digit = 2) {
+    const percent = (+num * 100).toFixed(digit)
     return `${percent}%`
 }
 
 export function getWalletTotalCNY(wallet) {
-    let usdtValue = 0
-    const usdt = wallet.find(c => c.currency === 'USDT')
-    if (usdt) {
-        usdtValue += usdt.amount
-    }
-    wallet.filter(c => c.currency !== 'USDT').forEach(coin => {
-        const exchangeCoin = MOCK_COINS.find(c => c.name === coin.name)
-        if (exchangeCoin) {
-            usdtValue += coin.amount * c.exchange.amount
-        }
+    let totalAmount = 0
+    wallet.forEach(coin => {
+        const amount = exchangeCNY(coin.currency, coin.amount)
+        totalAmount += amount
     })
+    return totalAmount
+}
+
+export function exchangeCNY(currency, amount) {
+    let usdtAmount = 0
+    if (currency === 'USDT') {
+        usdtAmount = amount
+    } else {
+        const exchangeCoin = MOCK_COINS.find(c => c.name === currency)
+        if (exchangeCoin) {
+            usdtAmount = amount * exchangeCoin.exchange.amount
+        }
+    }
     const usdtCoin = MOCK_COINS.find(c => c.name === 'USDT')
-    const cnyValue = usdtValue * usdtCoin.exchange.amount
+    const cnyValue = usdtAmount * usdtCoin.exchange.amount
     return cnyValue
 }

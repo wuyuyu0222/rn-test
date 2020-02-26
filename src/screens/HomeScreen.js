@@ -10,7 +10,7 @@ import OutlinedButton from '../components/OutlinedButton'
 
 export default function HomeScreen() {
     return (
-        <View style={[SHARED_STYLE.container, styles.container]}>
+        <View style={SHARED_STYLE.container}>
             <WalletInfo />
             <View style={[SHARED_STYLE.row, styles.navRow]}>
                 <TxListButton />
@@ -27,8 +27,8 @@ const WalletInfo = () => {
     return (
         <View style={styles.walletInfo}>
             <TouchableOpacity style={[SHARED_STYLE.card, styles.walletCard]} onPress={() => navigation.navigate(ROUTES.WALLET_DETAIL)}>
-                <Text style={[SHARED_STYLE.text, styles.walletTitle]}>My Wallet</Text>
-                <Text style={SHARED_STYLE.text}>{walletTotal} CNY</Text>
+                <Text style={[SHARED_STYLE.text, SHARED_STYLE.titileText, styles.walletTitle]}>My Wallet</Text>
+                <Text style={SHARED_STYLE.text}>{walletTotal.toLocaleString()} CNY</Text>
             </TouchableOpacity>
         </View>
     )
@@ -81,30 +81,26 @@ const CoinCard = (props) => {
 
     return (
         <TouchableOpacity style={[SHARED_STYLE.card, styles.coinCard]} onPress={() => navigation.navigate(ROUTES.COIN_DETAIL, { name: name })}>
-                <View style={styles.coinIcon}>
-                    <Image style={styles.iconImage} source={icon} />
+            <View style={styles.coinIcon}>
+                <Image style={styles.iconImage} source={icon} />
+            </View>
+            <View style={styles.coinInfo}>
+                <Text style={[SHARED_STYLE.text, SHARED_STYLE.titileText]}>{name}</Text>
+                <View style={styles.coinExchange}>
+                    <Text style={[SHARED_STYLE.text, styles.currencyText]}>
+                        {`${name}/${exchange.currency}`}
+                    </Text>
+                    <Text style={[SHARED_STYLE.text, styles.amountText, styles[exchangeState]]}>{exchange.amount}</Text>
                 </View>
-                <View style={styles.coinInfo}>
-                    <Text style={[SHARED_STYLE.text, styles.coinNameText]}>{name}</Text>
-                    <View style={styles.coinExchange}>
-                        <Text style={[SHARED_STYLE.text, styles.currencyText]}>
-                            {`${name}/${exchange.currency}`}
-                        </Text>
-                        <Text style={[SHARED_STYLE.text, styles.amountText, styles[exchangeState]]}>{exchange.amount}</Text>
-                    </View>
-                </View>
-                <View style={styles.coinRate}>
-                    <Text style={[SHARED_STYLE.text, styles.rateText, styles[exchangeState]]}>{toPercent(exchange.rate)}</Text>
-                </View>
+            </View>
+            <View style={styles.coinRate}>
+                <Text style={[SHARED_STYLE.text, styles.rateText, styles[exchangeState]]}>{toPercent(exchange.rate)}</Text>
+            </View>
         </TouchableOpacity>
     )
 }
 
 const styles = StyleSheet.create({
-    container: {
-        width: '100%',
-        ...paddingStyle(48, 12)
-    },
     walletInfo: {
         flex: 2,
         marginBottom: 18,
@@ -115,7 +111,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     walletTitle: {
-        fontSize: 18,
         marginBottom: 20
     },
     navRow: {
@@ -149,10 +144,6 @@ const styles = StyleSheet.create({
     coinInfo: {
         width: '50%',
         ...paddingStyle(0, 12),
-    },
-    coinNameText: {
-        fontSize: 21,
-        fontFamily: 'Gotham',
     },
     coinExchange: {
         flexDirection: 'row',

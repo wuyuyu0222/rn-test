@@ -41,7 +41,10 @@ export const borderStyle = (width, style, color) => {
 export const SHARED_STYLE = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: COLORS.gray
+        backgroundColor: COLORS.gray,
+        position: 'relative',
+        width: '100%',
+        ...paddingStyle(48, 12)
     },
     row: {
         flex: 1,
@@ -54,9 +57,11 @@ export const SHARED_STYLE = StyleSheet.create({
     },
     text: {
         fontSize: 14,
-        fontFamily: 'Gotham-light',
-        transform: [{translateY : 2}]
-
+        // fontFamily: 'Gotham-light',
+        transform: [{translateY : 2}],
+    },
+    titileText: {
+        fontSize: 21
     },
     button: {
         width: '100%',
@@ -64,7 +69,12 @@ export const SHARED_STYLE = StyleSheet.create({
     },
     buttonText: {
         fontSize: 15,
-        fontFamily: 'Gotham',
+        // fontFamily: 'Gotham',
+    },
+    homeButton: {
+        position: 'absolute',
+        top: 8,
+        left: 8
     },
     card: {
         borderRadius: 8,
