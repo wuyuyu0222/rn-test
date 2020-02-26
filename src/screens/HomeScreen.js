@@ -2,10 +2,10 @@ import React from 'react'
 import { View, Text, TouchableOpacity, FlatList, Image, StyleSheet } from 'react-native'
 import ROUTES from '../constants/Routes'
 import { useNavigation } from '@react-navigation/native'
-import { MOCK_COINS } from '../utils/mock'
+import { MOCK_COINS, MOCK_WALLET } from '../utils/mock'
 import COLORS from '../constants/Colors'
 import { SHARED_STYLE, paddingStyle, borderStyle } from '../constants/Styles'
-import { toPercent } from '../utils/common'
+import { toPercent, getWalletTotalCNY } from '../utils/common'
 import OutlinedButton from '../components/OutlinedButton'
 
 export default function HomeScreen() {
@@ -22,9 +22,14 @@ export default function HomeScreen() {
 }
 
 const WalletInfo = () => {
+    const navigation = useNavigation()
+    const walletTotal = getWalletTotalCNY(MOCK_WALLET)
     return (
-        <View style={[styles.walletInfo]}>
-            <Text style={SHARED_STYLE.text}>Wallet Info</Text>
+        <View style={styles.walletInfo}>
+            <TouchableOpacity style={[SHARED_STYLE.card, styles.walletCard]} onPress={() => navigation.navigate(ROUTES.WALLET_DETAIL)}>
+                <Text style={[SHARED_STYLE.text, styles.walletTitle]}>My Wallet</Text>
+                <Text style={SHARED_STYLE.text}>{walletTotal} CNY</Text>
+            </TouchableOpacity>
         </View>
     )
 }
@@ -75,8 +80,7 @@ const CoinCard = (props) => {
     const exchangeState = exchange.rate >= 0 ? EXCHANGE_STATE.UP : EXCHANGE_STATE.DOWN
 
     return (
-        <TouchableOpacity onPress={() => navigation.navigate(ROUTES.COIN_DETAIL, { name: name })}>
-            <View style={styles.coinCard}>
+        <TouchableOpacity style={[SHARED_STYLE.card, styles.coinCard]} onPress={() => navigation.navigate(ROUTES.COIN_DETAIL, { name: name })}>
                 <View style={styles.coinIcon}>
                     <Image style={styles.iconImage} source={icon} />
                 </View>
@@ -92,7 +96,6 @@ const CoinCard = (props) => {
                 <View style={styles.coinRate}>
                     <Text style={[SHARED_STYLE.text, styles.rateText, styles[exchangeState]]}>{toPercent(exchange.rate)}</Text>
                 </View>
-            </View>
         </TouchableOpacity>
     )
 }
@@ -100,22 +103,31 @@ const CoinCard = (props) => {
 const styles = StyleSheet.create({
     container: {
         width: '100%',
-        ...paddingStyle(0, 12)
+        ...paddingStyle(48, 12)
     },
     walletInfo: {
-        flex: 3,
+        flex: 2,
+        marginBottom: 18,
+    },
+    walletCard: {
+        flex: 1,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+    },
+    walletTitle: {
+        fontSize: 18,
+        marginBottom: 20
     },
     navRow: {
         marginLeft: -12,
         marginRight: -12,
+        marginBottom: 18
     },
     navCol: {
         ...paddingStyle(0, 12),
     },
     coinList: {
-        flex: 4,
+        flex: 8,
         marginBottom: -12
     },
     coinCard: {
@@ -124,9 +136,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         marginBottom: 12,
-        borderRadius: 8,
         ...paddingStyle(0, 12),
-        ...borderStyle(1, 'solid', COLORS.lightBlack),
     },
     coinIcon: {
         width: '20%'

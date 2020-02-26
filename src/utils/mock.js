@@ -9,3 +9,10 @@ export const MOCK_TXS = [
     { id: 1, currency: 'BTC', amount: 0.402, price: { currency: 'CNY', amount: 500 } },
     { id: 2, currency: 'BTC', amount: 0.005, price: { currency: 'CNY', amount: 500 } }
 ]
+
+export const MOCK_WALLET = [
+    { currency: 'BTC', amount: 0.122 },
+    { currency: 'ETH', amount: 122.733 },
+    { currency: 'LTC', amount: 102.11 },
+    { currency: 'USDT', amount: 1299.12 }
+]

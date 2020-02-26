@@ -65,5 +65,9 @@ export const SHARED_STYLE = StyleSheet.create({
     buttonText: {
         fontSize: 15,
         fontFamily: 'Gotham',
+    },
+    card: {
+        borderRadius: 8,
+        ...borderStyle(1, 'solid', COLORS.lightBlack),
     }
 })
