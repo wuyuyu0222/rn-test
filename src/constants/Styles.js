@@ -58,7 +58,7 @@ export const SHARED_STYLE = StyleSheet.create({
     text: {
         fontSize: 14,
         // fontFamily: 'Gotham-light',
-        transform: [{translateY : 2}],
+        // transform: [{translateY : 2}],
     },
     titileText: {
         fontSize: 21

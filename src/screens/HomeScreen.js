@@ -1,10 +1,10 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, FlatList, Image, StyleSheet } from 'react-native'
+import { Ionicons } from '@expo/vector-icons'
 import ROUTES from '../constants/Routes'
 import { useNavigation } from '@react-navigation/native'
 import { MOCK_COINS, MOCK_WALLET } from '../utils/mock'
-import COLORS from '../constants/Colors'
-import { SHARED_STYLE, paddingStyle, borderStyle } from '../constants/Styles'
+import { SHARED_STYLE, paddingStyle } from '../constants/Styles'
 import { toPercent, getWalletTotalCNY } from '../utils/common'
 import OutlinedButton from '../components/OutlinedButton'
 
@@ -78,7 +78,7 @@ const CoinCard = (props) => {
     const { name, exchange, icon } = props
     const navigation = useNavigation()
     const exchangeState = exchange.rate >= 0 ? EXCHANGE_STATE.UP : EXCHANGE_STATE.DOWN
-
+    const rateText = exchange.rate >= 0 ? toPercent(exchange.rate) : toPercent(exchange.rate * -1)
     return (
         <TouchableOpacity style={[SHARED_STYLE.card, styles.coinCard]} onPress={() => navigation.navigate(ROUTES.COIN_DETAIL, { name: name })}>
             <View style={styles.coinIcon}>
@@ -94,7 +94,8 @@ const CoinCard = (props) => {
                 </View>
             </View>
             <View style={styles.coinRate}>
-                <Text style={[SHARED_STYLE.text, styles.rateText, styles[exchangeState]]}>{toPercent(exchange.rate)}</Text>
+                <Ionicons name={`ios-arrow-${exchangeState}`} size={16} style={styles.rateIcon} />
+                <Text style={[SHARED_STYLE.text, styles.rateText, styles[exchangeState]]}>{rateText}</Text>
             </View>
         </TouchableOpacity>
     )
@@ -154,20 +155,26 @@ const styles = StyleSheet.create({
     },
     amountText: {
         fontSize: 21,
-        transform: [{ translateY: 5 }]
+        transform: [{ translateY: 2 }]
+        // transform: [{ translateY: 5 }]
     },
     coinRate: {
+        flexDirection: 'row',
         width: '30%',
         alignItems: 'flex-end',
         justifyContent: 'flex-end'
+    },
+    rateIcon: {
+        marginRight: 8,
+        transform: [{ translateY: -1 }]
     },
     rateText: {
         fontSize: 18
     },
     down: {
-        color: COLORS.red400
+        // color: COLORS.red400
     },
     up: {
-        color: COLORS.green400
+        // color: COLORS.green400
     }
 })
