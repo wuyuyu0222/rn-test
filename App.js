@@ -11,34 +11,35 @@ const theme = Object.assign(DefaultTheme, {
     colors: Object.assign(DefaultTheme.colors, {
         primary: COLORS.black
     }),
-    // fonts: {
-    //     light: {
-    //         fontFamily: 'Gotham-light',
-    //     },
-    //     medium: {
-    //         fontFamily: 'Gotham',
-    //     },
-    //     regular: {
-    //         fontFamily: 'Gotham-light'
-    //     },
-    //     thin: {
-    //         fontFamily: 'Gotham-light'
-    //     }
-    // }
+    fonts: {
+        light: {
+            fontFamily: 'Gotham-Light',
+        },
+        medium: {
+            fontFamily: 'Gotham',
+        },
+        regular: {
+            fontFamily: 'Gotham-Light'
+        },
+        thin: {
+            fontFamily: 'Gotham-Light'
+        }
+    }
 })
+
+const loadFonts = async () => {
+    await Font.loadAsync({
+        'Gotham': require('./assets/fonts/Gotham-Book.otf'),
+        'Gotham-Light': require('./assets/fonts/Gotham-Light.otf'),
+    })
+}
 
 //TODO: custom font 'Gotham' can't display as expected
 export default function App() {
     const [loading, setLoading] = useState(true)
     useEffect(() => {
-        const loadFont = async () => {
-            await Font.loadAsync({
-                'Gotham': require('./assets/fonts/GothamBook.ttf'),
-                'Gotham-light': require('./assets/fonts/GothamLight.ttf'),
-            })
-        }
         (async () => {
-            await loadFont()
+            await loadFonts()
             setLoading(false)
         })()
     }, [])

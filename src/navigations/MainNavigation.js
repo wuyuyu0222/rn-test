@@ -7,6 +7,7 @@ import CoinDetailScreen from '../screens/CoinDetailScreen'
 import TxListScreen from '../screens/TxListScreen'
 import TxDetailScreen from '../screens/TxDetailScreen'
 import WalletDetailScreen from '../screens/WalletDetailScreen'
+import WalletHistoryScreen from '../screens/WalletHistoryScreen'
 
 const { Navigator, Screen } = createStackNavigator()
 
@@ -19,6 +20,7 @@ export default function MainNavigation() {
                 <Screen name={ROUTES.TX_LIST} component={TxListScreen} />
                 <Screen name={ROUTES.TX_DETAIL} component={TxDetailScreen} />
                 <Screen name={ROUTES.WALLET_DETAIL} component={WalletDetailScreen} />
+                <Screen name={ROUTES.WALLET_HISTORY} component={WalletHistoryScreen} />
             </Navigator>
         </NavigationContainer>
     )

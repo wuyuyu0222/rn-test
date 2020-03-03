@@ -5,12 +5,13 @@ import { SHARED_STYLE } from '../constants/Styles'
 import { MOCK_WALLET } from '../utils/mock'
 import { getWalletTotalCNY, exchangeCNY } from '../utils/common'
 import PercentBar from '../components/PercentBar'
+import { useNavigation } from '@react-navigation/native'
 
 export default function WalletDetailScreen({ navigation }) {
     return (
         <View style={SHARED_STYLE.container}>
-            <TouchableOpacity style={SHARED_STYLE.homeButton} onPress={() => navigation.navigate(ROUTES.HOME)}>
-                <Text style={SHARED_STYLE.buttonText}>To Home</Text>
+            <TouchableOpacity style={SHARED_STYLE.navButton} onPress={() => navigation.navigate(ROUTES.HOME)}>
+                <Text style={SHARED_STYLE.buttonText}>Home</Text>
             </TouchableOpacity>
             <WalletInfo wallet={MOCK_WALLET} />
         </View>
@@ -37,10 +38,11 @@ const WalletInfo = ({ wallet }) => {
 }
 
 const CoinInfo = ({ coin }) => {
+    const navigation = useNavigation()
     return (
         <View style={styles.coinInfo}>
             <Text style={SHARED_STYLE.text}>{coin.amount} {coin.currency}</Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate(ROUTES.WALLET_HISTORY, { currency: coin.currency })}>
                 <Text style={[SHARED_STYLE.text, SHARED_STYLE.buttonText]}>History</Text>
             </TouchableOpacity>
         </View>

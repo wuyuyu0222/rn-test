@@ -7,7 +7,9 @@ const COLORS = {
     
     red400: '#ff7373',
 
-    green400: '#429960'
+    green400: '#429960',
+
+    transparent: 'transparent'
 }
 
 export default COLORS

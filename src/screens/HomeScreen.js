@@ -90,12 +90,12 @@ const CoinCard = (props) => {
                     <Text style={[SHARED_STYLE.text, styles.currencyText]}>
                         {`${name}/${exchange.currency}`}
                     </Text>
-                    <Text style={[SHARED_STYLE.text, styles.amountText, styles[exchangeState]]}>{exchange.amount}</Text>
+                    <Text style={[SHARED_STYLE.text, styles.amountText]}>{exchange.amount}</Text>
                 </View>
             </View>
             <View style={styles.coinRate}>
                 <Ionicons name={`ios-arrow-${exchangeState}`} size={16} style={styles.rateIcon} />
-                <Text style={[SHARED_STYLE.text, styles.rateText, styles[exchangeState]]}>{rateText}</Text>
+                <Text style={[SHARED_STYLE.text, styles.rateText]}>{rateText}</Text>
             </View>
         </TouchableOpacity>
     )
@@ -155,8 +155,7 @@ const styles = StyleSheet.create({
     },
     amountText: {
         fontSize: 21,
-        transform: [{ translateY: 2 }]
-        // transform: [{ translateY: 5 }]
+        transform: [{ translateY: 5 }]
     },
     coinRate: {
         flexDirection: 'row',
@@ -165,16 +164,10 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end'
     },
     rateIcon: {
-        marginRight: 8,
-        transform: [{ translateY: -1 }]
+        marginRight: 6,
+        transform: [{ translateY: -2 }]
     },
     rateText: {
         fontSize: 18
-    },
-    down: {
-        // color: COLORS.red400
-    },
-    up: {
-        // color: COLORS.green400
     }
 })

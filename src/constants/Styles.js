@@ -57,8 +57,8 @@ export const SHARED_STYLE = StyleSheet.create({
     },
     text: {
         fontSize: 14,
-        // fontFamily: 'Gotham-light',
-        // transform: [{translateY : 2}],
+        fontFamily: 'Gotham-Light',
+        transform: [{translateY : 2}],
     },
     titileText: {
         fontSize: 21
@@ -68,10 +68,10 @@ export const SHARED_STYLE = StyleSheet.create({
         ...borderStyle(1, 'solid', COLORS.lightBlack)
     },
     buttonText: {
+        fontFamily: 'Gotham',
         fontSize: 15,
-        // fontFamily: 'Gotham',
     },
-    homeButton: {
+    navButton: {
         position: 'absolute',
         top: 8,
         left: 8

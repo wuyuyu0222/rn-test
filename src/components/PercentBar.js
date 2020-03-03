@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     percentBarOuter: {
         backgroundColor: COLORS.shadow,
         width: '100%',
-        height: 8,
+        height: 4,
         position: 'relative',
         zIndex: 1
     },
