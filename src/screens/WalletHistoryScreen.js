@@ -5,6 +5,7 @@ import Tabs from '../components/Tabs'
 import { MOCK_TX_HISTORYS } from '../utils/mock'
 import Container from '../components/Container'
 import BaseText from '../components/Text/BaseText'
+import COLORS from '../constants/Colors'
 
 export default function WalletHistoryScreen({ route }) {
     const { currency } = route.params
@@ -41,10 +42,9 @@ const HistoryList = ({ list }) => {
                     <View key={tx.id} style={styles.txCard}>
                         <BaseText>{tx.currency}</BaseText>
                         <BaseText>{tx.amount}</BaseText>
-                        <BaseText>{tx.type} {tx.status}</BaseText>
-                        <View>
-                            <BaseText>{datetime.toLocaleDateString()}</BaseText>
-                            <BaseText>{datetime.toLocaleTimeString()}</BaseText>
+                        <View style={styles.txStatus}>
+                            <BaseText>{tx.type} {tx.status}</BaseText>
+                            <BaseText style={styles.timeText}>{datetime.toLocaleString()}</BaseText>
                         </View>
                     </View>
                 )
@@ -55,11 +55,19 @@ const HistoryList = ({ list }) => {
 
 const styles = StyleSheet.create({
     txCard: {
-        height: 32,
+        height: 48,
         flexDirection: 'row',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         justifyContent: 'space-between',
         marginTop: 12,
-        ...paddingStyle(0, 12),
+        ...paddingStyle(12),
     },
+    txStatus: {
+        height: '100%',
+        alignItems: 'flex-end',
+    },
+    timeText: {
+        marginTop: 8,
+        fontSize: 11,
+    }
 })
