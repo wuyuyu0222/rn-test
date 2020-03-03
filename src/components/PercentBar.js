@@ -1,8 +1,9 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native';
-import { SHARED_STYLE } from "../constants/Styles";
+import { View, StyleSheet } from 'react-native';
 import COLORS from '../constants/Colors';
 import { toPercent } from '../utils/common';
+import BaseText from './Text/BaseText';
+import { borderStyle } from '../constants/Styles';
 
 export default function PercentBar({ value }) {
     if (value === null || value === undefined || isNaN(+value)) {
@@ -15,19 +16,14 @@ export default function PercentBar({ value }) {
             <View style={styles.percentBarOuter}>
                 <View style={[styles.percentBarInner, { width: width }]} />
             </View>
-            <Text style={[SHARED_STYLE.text, styles.percentBarLabel]}>{label}</Text>
+            <BaseText>{label}</BaseText>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     percentBarContainer: {
-        flex: 1,
         width: '100%',
-        justifyContent: 'center',
-        marginBottom: 24
-    },
-    percentBarLabel: {
     },
     percentBarOuter: {
         backgroundColor: COLORS.shadow,

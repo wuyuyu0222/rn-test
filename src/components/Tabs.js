@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { SceneMap, TabView, TabBar } from 'react-native-tab-view'
 import COLORS from '../constants/Colors'
-import { SHARED_STYLE } from '../constants/Styles'
+import ButtonText from './Button/ButtonText'
 
 export default function Tabs({ routes }) {
     const [index, setIndex] = useState(0)
@@ -31,8 +31,8 @@ const renderTabBar = props => (
         activeColor={COLORS.black}
         inactiveColor={COLORS.lightBlack}
         style={{ backgroundColor: COLORS.transparent }}
-        labelStyle={[SHARED_STYLE.text, SHARED_STYLE.buttonText]}
         tabStyle={{ minHeight: 24, padding: 4, justifyContent: 'flex-end' }}
         indicatorStyle={{ backgroundColor: COLORS.black, shadowOpacity: 0 }}
+        renderLabel={({ route }) => (<ButtonText>{route.title}</ButtonText>)}
     />
 )

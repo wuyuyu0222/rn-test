@@ -1,6 +1,3 @@
-import { StyleSheet } from "react-native";
-import COLORS from "./Colors";
-
 export const paddingStyle = (...param) => {
     let paddingObj = {}
     switch (param.length) {
@@ -37,47 +34,3 @@ export const borderStyle = (width, style, color) => {
     }
     return borderObj
 }
-
-export const SHARED_STYLE = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: COLORS.gray,
-        position: 'relative',
-        width: '100%',
-        ...paddingStyle(48, 12)
-    },
-    row: {
-        flex: 1,
-        flexDirection: 'row',
-    },
-    col: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    text: {
-        fontSize: 14,
-        fontFamily: 'Gotham-Light',
-        transform: [{translateY : 2}],
-    },
-    titileText: {
-        fontSize: 21
-    },
-    button: {
-        width: '100%',
-        ...borderStyle(1, 'solid', COLORS.lightBlack)
-    },
-    buttonText: {
-        fontFamily: 'Gotham',
-        fontSize: 15,
-    },
-    navButton: {
-        position: 'absolute',
-        top: 8,
-        left: 8
-    },
-    card: {
-        borderRadius: 8,
-        ...borderStyle(1, 'solid', COLORS.lightBlack),
-    }
-})

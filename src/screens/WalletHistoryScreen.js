@@ -1,11 +1,12 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
-import { SHARED_STYLE, paddingStyle } from '../constants/Styles'
+import { View, StyleSheet } from 'react-native'
+import { paddingStyle } from '../constants/Styles'
 import Tabs from '../components/Tabs'
-import ROUTES from '../constants/Routes'
 import { MOCK_TX_HISTORYS } from '../utils/mock'
+import Container from '../components/Container'
+import BaseText from '../components/Text/BaseText'
 
-export default function WalletHistoryScreen({ navigation, route }) {
+export default function WalletHistoryScreen({ route }) {
     const { currency } = route.params
     const txs = MOCK_TX_HISTORYS.filter(t => t.currency === currency)
     const AllHistory = () => {
@@ -25,12 +26,9 @@ export default function WalletHistoryScreen({ navigation, route }) {
         { title: 'Send', view: SendHistory },
     ]
     return (
-        <View style={SHARED_STYLE.container}>
-            <TouchableOpacity style={SHARED_STYLE.navButton} onPress={() => navigation.navigate(ROUTES.WALLET_DETAIL)}>
-                <Text style={SHARED_STYLE.buttonText}>My Wallet</Text>
-            </TouchableOpacity>
+        <Container>
             <Tabs routes={routes} />
-        </View>
+        </Container>
     )
 }
 
@@ -41,12 +39,12 @@ const HistoryList = ({ list }) => {
                 const datetime = new Date(tx.timestamp)
                 return (
                     <View key={tx.id} style={styles.txCard}>
-                        <Text style={SHARED_STYLE.text}>{tx.currency}</Text>
-                        <Text style={SHARED_STYLE.text}>{tx.amount}</Text>
-                        <Text style={SHARED_STYLE.text}>{tx.type} {tx.status}</Text>
+                        <BaseText>{tx.currency}</BaseText>
+                        <BaseText>{tx.amount}</BaseText>
+                        <BaseText>{tx.type} {tx.status}</BaseText>
                         <View>
-                            <Text style={SHARED_STYLE.text}>{datetime.toLocaleDateString()}</Text>
-                            <Text style={SHARED_STYLE.text}>{datetime.toLocaleTimeString()}</Text>
+                            <BaseText>{datetime.toLocaleDateString()}</BaseText>
+                            <BaseText>{datetime.toLocaleTimeString()}</BaseText>
                         </View>
                     </View>
                 )

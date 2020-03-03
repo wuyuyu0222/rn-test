@@ -1,21 +1,17 @@
 import React from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
-import ROUTES from '../constants/Routes'
+import { View } from 'react-native'
 import { MOCK_TXS } from '../utils/mock'
+import Container from '../components/Container'
+import BaseText from '../components/Text/BaseText'
 
-export default function TxDetailScreen({ navigation, route }) {
+export default function TxDetailScreen({ route }) {
     const { id } = route.params
     const tx = MOCK_TXS.find(tx => tx.id === id)
     return (
-        <View>
-            <TouchableOpacity onPress={() => navigation.navigate(ROUTES.TX_LIST)}>
-                <Text>To List</Text>
-            </TouchableOpacity>
-            <View>
-                <Text>Currency: {tx.currency}</Text>
-                <Text>Amount: {tx.amount}</Text>
-                <Text>Price: {tx.price.amount}{tx.price.currency}</Text>
-            </View>
-        </View>
+        <Container>
+            <BaseText>Currency: {tx.currency}</BaseText>
+            <BaseText>Amount: {tx.amount}</BaseText>
+            <BaseText>Price: {tx.price.amount}{tx.price.currency}</BaseText>
+        </Container>
     )
 }

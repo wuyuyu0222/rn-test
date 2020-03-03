@@ -1,21 +1,17 @@
 import React from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
-import ROUTES from '../constants/Routes'
 import { MOCK_COINS } from '../utils/mock'
-import { SHARED_STYLE } from '../constants/Styles'
+import Container from '../components/Container'
+import BaseText from '../components/Text/BaseText'
 
-export default function CoinDetailScreen({ navigation, route }) {
+export default function CoinDetailScreen({ route }) {
     const { name } = route.params
     const coin = MOCK_COINS.find(coin => coin.name === name)
     return (
-        <View style={SHARED_STYLE.container}>
-            <TouchableOpacity onPress={() => navigation.navigate(ROUTES.HOME)}>
-                <Text style={SHARED_STYLE.text}>To Home</Text>
-            </TouchableOpacity>
-            <Text style={SHARED_STYLE.text}>{coin.name}</Text>
-            <Text style={SHARED_STYLE.text}>{coin.exchange.currency}</Text>
-            <Text style={SHARED_STYLE.text}>{coin.exchange.amount}</Text>
-            <Text style={SHARED_STYLE.text}>{coin.exchange.rate}</Text>
-        </View>
+        <Container>
+            <BaseText>{coin.name}</BaseText>
+            <BaseText>{coin.exchange.currency}</BaseText>
+            <BaseText>{coin.exchange.amount}</BaseText>
+            <BaseText>{coin.exchange.rate}</BaseText>
+        </Container>
     )
 }

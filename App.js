@@ -1,31 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet } from 'react-native';
-import { Provider, DefaultTheme, Button } from 'react-native-paper';
+import { View } from 'react-native';
 import MainNavigation from './src/navigations/MainNavigation';
-import { SHARED_STYLE, paddingStyle } from './src/constants/Styles';
-import COLORS from './src/constants/Colors';
 import * as Font from 'expo-font'
-
-const theme = Object.assign(DefaultTheme, {
-    roundness: 8,
-    colors: Object.assign(DefaultTheme.colors, {
-        primary: COLORS.black
-    }),
-    fonts: {
-        light: {
-            fontFamily: 'Gotham-Light',
-        },
-        medium: {
-            fontFamily: 'Gotham',
-        },
-        regular: {
-            fontFamily: 'Gotham-Light'
-        },
-        thin: {
-            fontFamily: 'Gotham-Light'
-        }
-    }
-})
 
 const loadFonts = async () => {
     await Font.loadAsync({
@@ -47,17 +23,8 @@ export default function App() {
         return null
     }
     return (
-        <Provider theme={theme}>
-            <View style={styles.homeView}>
-                <Button>test</Button>
-                <MainNavigation />
-            </View>
-        </Provider>
+        <View style={{ flex: 1 }}>
+            <MainNavigation />
+        </View>
     )
 }
-
-const styles = StyleSheet.create({
-    homeView: {
-        flex: 1
-    }
-})
