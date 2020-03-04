@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import MainNavigation from './src/navigations/MainNavigation';
 import * as Font from 'expo-font'
+import { AuthProvider } from './src/contexts/auth';
 
 const loadFonts = async () => {
     await Font.loadAsync({
@@ -23,8 +24,10 @@ export default function App() {
         return null
     }
     return (
-        <View style={{ flex: 1 }}>
-            <MainNavigation />
-        </View>
+        <AuthProvider>
+            <View style={{ flex: 1 }}>
+                <MainNavigation />
+            </View>
+        </AuthProvider>
     )
 }
