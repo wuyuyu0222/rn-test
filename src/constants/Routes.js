@@ -4,7 +4,8 @@ const ROUTES = Object.freeze({
     TX_LIST: 'Transaction List',
     TX_DETAIL: 'Transaction Detail',
     WALLET_DETAIL: 'My Wallet',
-    WALLET_HISTORY: 'History'
+    WALLET_HISTORY: 'History',
+    SIGN_IN: 'Sign in'
 })
 
 export default ROUTES

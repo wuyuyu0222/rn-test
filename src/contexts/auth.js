@@ -5,9 +5,10 @@ const AuthContext = React.createContext()
 
 const useAuth = () => {
     const authContext = useContext(AuthContext)
-    return Object.assign(authContext, {
-        isAuthorized: Boolean(authContext.token)
-    })
+    return {
+        isAuthorized: Boolean(authContext.token),
+        ...authContext
+    }
 }
 
 const AuthProvider = ({ children }) => {
@@ -28,7 +29,6 @@ const AuthProvider = ({ children }) => {
             try {
                 await authService.login(username, password)
                 return dispatch({ type: 'SIGN_IN', token: 'auth-token' })
-
             } catch {
                 return
             }
