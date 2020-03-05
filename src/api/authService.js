@@ -4,7 +4,7 @@ export const authService = {
             if (!username || !password) {
                 reject()
             }
-            resolve()
+            resolve('auth-token')
         })
     }
 }

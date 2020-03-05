@@ -1,5 +1,6 @@
-import React, { useReducer, useContext, useMemo } from 'react'
+import React, { useReducer, useContext, useMemo, useEffect } from 'react'
 import { authService } from '../api/authService'
+import { AsyncStorage } from 'react-native'
 
 const AuthContext = React.createContext()
 
@@ -19,7 +20,14 @@ const AuthProvider = ({ children }) => {
             case 'SIGN_OUT':
                 return { token: null }
         }
-    }, { token: null })
+    }, { token: AsyncStorage.getItem('token') || null })
+
+    useEffect(() => {
+        (async () => {
+            const token = await AsyncStorage.getItem('token')
+            dispatch({ type: 'SIGN_IN', token })
+        })()
+    }, [])
 
     const funcs = useMemo(() => ({
         signIn: async (username, password) => {
@@ -27,13 +35,17 @@ const AuthProvider = ({ children }) => {
                 return
             }
             try {
-                await authService.login(username, password)
-                return dispatch({ type: 'SIGN_IN', token: 'auth-token' })
+                const res = await authService.login(username, password)
+                await AsyncStorage.setItem('token', res)
+                return dispatch({ type: 'SIGN_IN', token: res })
             } catch {
                 return
             }
         },
-        signOut: () => dispatch({ type: 'SIGN_OUT' })
+        signOut: async () => {
+            await AsyncStorage.removeItem('token')
+            return dispatch({ type: 'SIGN_OUT' })
+        }
     }), [])
 
     return (
