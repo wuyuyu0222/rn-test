@@ -10,9 +10,10 @@ export default function BaseTextInput({ style, children, label, ...props }) {
             <BaseText>{label}</BaseText>
             <TextInput {...props} style={[{
                 height: 32,
+                marginTop: 4,
                 marginBottom: 12,
                 borderRadius: 8,
-                ...paddingStyle(4,12),
+                ...paddingStyle(4, 12),
                 ...borderStyle(1, 'solid', COLORS.lightBlack)
             }, style]}>
                 {children}
