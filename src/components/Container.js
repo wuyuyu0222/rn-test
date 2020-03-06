@@ -10,7 +10,7 @@ export default function Container({ style, children }) {
             backgroundColor: COLORS.gray,
             position: 'relative',
             width: '100%',
-            ...paddingStyle(24, 12)
+            ...paddingStyle(48, 12)
         }, style]}>
             {children}
         </View>

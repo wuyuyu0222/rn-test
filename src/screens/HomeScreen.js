@@ -11,14 +11,12 @@ import OutlinedButton from '../components/Button/OutlinedButton'
 import BaseText from '../components/Text/BaseText'
 import TitleText from '../components/Text/TitleText'
 import Card from '../components/Card'
-import { useAuth } from '../contexts/auth'
 import BaseButton from '../components/Button/BaseButton'
 
-export default function HomeScreen() {
-    const auth =useAuth()
+export default function HomeScreen({ navigation }) {
     return (
         <Container>
-            <BaseButton onPress={auth.signOut}>sign out</BaseButton>
+            <BaseButton onPress={() => navigation.navigate(ROUTES.TEST)}>test</BaseButton>
             <WalletInfo />
             <NavButtonGroup />
             <CoinList />
